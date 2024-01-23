@@ -1,0 +1,31 @@
+# File e cartelle tipici di macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon file
+Icon
+# Thumbnails
+._*
+
+# File che potrebbero apparire sulla root di una cartella volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories
+.AppleDesktop
+.AppleDB
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Altro
+*.log
+*.tmp
+*.swp
+*.swo

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <script src="https://kit.fontawesome.com/1205482781.js"></script>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Artist</title>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!--SIDEBAR VERTICAL-->
+        <div class="col-2">
+          <nav
+            class="navbar navbar-expand-lg navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between"
+            id="sidebar"
+          >
+            <div class="nav-container">
+              <a class="navbar-brand" href="index.html">
+                <img
+                  src="logo/Spotify_Logo.png"
+                  alt="Spotify_Logo"
+                  width="131"
+                  height="40"
+                />
+              </a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                  <ul>
+                    <li>
+                      <a class="nav-item nav-link" href="index.html"
+                        ><i class="fas fa-home fa-lg"></i>&nbsp; Home
+                      </a>
+                    </li>
+                    <li>
+                      <a class="nav-item nav-link" href="#"
+                        ><i class="fas fa-book-open fa-lg"></i>&nbsp; Your
+                        Library</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="nav-btn">
+              <button class="btn signup-btn" type="button">Sign Up</button>
+              <button class="btn login-btn" type="button">Login</button>
+              <a href="#">Cookie Policy</a> |
+              <a href="#"> Privacy</a>
+            </div>
+          </nav>
+        </div>
+        <!--END SIDEBAR VERTICAL-->
+
+        <!--MAIN-->
+        <div class="col-12 col-md-9 offset-md-3 mainPage">
+          <div class="row mb-3">
+            <div class="col-9 col-lg-11 mainLinks d-none d-md-flex">
+              <a href="#">TRENDING</a>
+              <a href="#">PODCAST</a>
+              <a href="#">MOODS AND GENRES</a>
+              <a href="#">NEW RELEASES</a>
+              <a href="#">DISCOVER</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-10 col-lg-10 mt-5">
+              <h2 class="titleMain"></h2>
+              <div id="followers"></div>
+              <div class="d-flex justify-content-center" id="button-container">
+                <button
+                  class="btn btn-success mr-2 mainButton d-none"
+                  id="playButton"
+                >
+                  PLAY
+                </button>
+                <button
+                  class="btn btn-outline-light mainButton d-none"
+                  id="followButton"
+                >
+                  FOLLOW
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-10 offset-1 col-md-10 col-lg-10 p-0">
+              <div class="mt-4 d-flex justify-content-start">
+                <h2 class="text-white font-weight-bold">Tracks</h2>
+              </div>
+              <div class="pt-5 mb-5">
+                <div class="row" id="apiLoaded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--END MAIN-->
+
+    <!--NAVBAR FLEX-BOTTOM-->
+    <div class="container-fluid fixed-bottom bg-container pt-1">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-2">
+          <div class="row">
+            <div
+              class="col-6 col-md-4 col-lg-2 offset-3 offset-md-4 offset-lg-5 playerControls mt-1"
+            >
+              <div class="row">
+                <a href="#">
+                  <img src="playerbuttons/Shuffle.png" alt="shuffle" />
+                </a>
+                <a href="#">
+                  <img src="playerbuttons/Previous.png" alt="shuffle" />
+                </a>
+                <a href="#">
+                  <img src="playerbuttons/Play.png" alt="shuffle" />
+                </a>
+                <a href="#">
+                  <img src="playerbuttons/Next.png" alt="shuffle" />
+                </a>
+                <a href="#">
+                  <img src="playerbuttons/Repeat.png" alt="shuffle" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center playBar py-3">
+            <div class="col-8 col-md-6">
+              <div class="progress">
+                <div
+                  class="progress-bar"
+                  role="progressbar"
+                  aria-valuenow="0"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--END NAVBAR BOTTOM-->
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function albumCard(songInfo) {
+        return `
+          <div class="col-sm-auto col-md-auto text-center mb-5">
+            <a href="/album_page.html?id=${songInfo.album.id}">
+              <img class="img-fluid" src=${
+                songInfo.album.cover_medium // creating the album image anchor
+              } alt="1" />
+            </a>
+            <p>
+              <a href="#">
+                Track: "${
+                  songInfo.title.length < 16
+                    ? `${songInfo.title}`
+                    : `${songInfo.title.substring(0, 16)}...` // setting the track title, if it's longer than 16 chars cuts the rest
+                }"
+              </a><br>
+              <a href="/album_page.html?id=${songInfo.album.id}">
+                Album: "${
+                  songInfo.album.title.length < 16
+                    ? `${songInfo.album.title}`
+                    : `${songInfo.album.title.substring(0, 16)}...` // setting the track title, if it's longer than 16 chars cuts the rest
+                }"
+              </a>
+            </p>
+          </div>`;
+      }
+
+      window.onload = async () => {
+        let artistId = new URLSearchParams(document.location.search).get("id");
+
+        let headers = new Headers({
+          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+          "X-RapidAPI-Key":
+            "222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20",
+        });
+
+        try {
+          let response = await fetch(
+            "https://striveschool-api.herokuapp.com/api/deezer/artist/" +
+              artistId,
+            {
+              method: "GET",
+              headers,
+            }
+          );
+
+          if (response.ok) {
+            let artist = await response.json();
+
+            // displaying the playButton
+            let playButton = document.querySelector("#playButton");
+            playButton.classList.remove("d-none");
+            playButton.classList.add("d-inline");
+
+            // displaying the followButton
+            let followButton = document.querySelector("#followButton");
+            followButton.classList.remove("d-none");
+            followButton.classList.add("d-inline");
+
+            // setting the artist name
+            let titleMain = document.querySelector(".titleMain");
+            titleMain.innerHTML = artist.name;
+
+            // setting the followers section
+            let followers = document.querySelector("#followers");
+            followers.innerText = artist.nb_fan + " followers";
+
+            let tracksResponse = await fetch(
+              // await the fetch of the artist songs
+              "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
+                artist.name,
+              {
+                method: "GET",
+                headers,
+              }
+            );
+
+            if (tracksResponse.ok) {
+              let tracklist = await tracksResponse.json();
+              for (let i = 0; i < tracklist.data.length; i++) {
+                let apiLoaded = document.querySelector("#apiLoaded");
+                apiLoaded.innerHTML += albumCard(tracklist.data[i]);
+              }
+            }
+          } else {
+            // something went wrong with the request --> i.e. headers missing, wrong HTTP Method
+            document.querySelector("#apiLoaded").innerHTML =
+              "NOT OK" + (await response.text());
+          }
+        } catch (exception) {
+          // ex.: Url is not correct, Internal Server Error
+          document.querySelector("#apiLoaded").innerHTML = exception;
+        }
+      };
+    </script>
+  </body>
+</html>
