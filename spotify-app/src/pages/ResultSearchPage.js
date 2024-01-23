@@ -31,7 +31,7 @@ export default function ResultSearchPage() {
             console.log(error);
         })
 
-    },[])
+    },[query])
 
     console.log(risultato)
 
@@ -43,7 +43,7 @@ export default function ResultSearchPage() {
                     <div className='risultati'>
                         <h2>Search Results: </h2>
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
-                            <SearchTrackGenComp searchResult={risultato} />
+                            {risultato && <SearchTrackGenComp searchResult={risultato} /> }
                         </div>
                     </div>
                 </div>

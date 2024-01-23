@@ -10,7 +10,7 @@ export default function SearchTrackGenComp( {searchResult} ) {
   useEffect(()  => {
     setTrackList(searchResult)
 
-  },[])
+  },[searchResult, trackList])
   console.log(trackList)
 
   return (
