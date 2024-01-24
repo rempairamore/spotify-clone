@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 export default function HeaderComp() {
   return (
     <>
-    <div className="col-12 col-md-9 offset-md-3 mainPage">
+    <div className="col-12 col-md-9 offset-md-3 mainPage mt-2">
     <Row>
       <Col xs={9} lg={11} className="mainLinks d-none d-md-flex">
         <a href="#">TRENDING</a>

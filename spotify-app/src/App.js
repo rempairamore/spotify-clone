@@ -1,6 +1,6 @@
 import './App.css';
-import 'bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// import 'bootstrap';
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import AlbumPage from './pages/AlbumPage'

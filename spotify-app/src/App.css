@@ -238,7 +238,7 @@ body {
   }
   
   .card {
-    background-color: transparent;
+    background-color: transparent!important;
     border-width: 0;
     display: flex;
     align-items: center;
@@ -248,3 +248,29 @@ body {
     cursor: pointer;
     text-decoration: underline;
   }
+
+.logograndespotify {
+  display: block;
+  margin: 0 auto;
+}
+
+.risultati h2 {
+  color: whitesmoke;
+}
+
+.risultatiCopertine {
+  border-radius: 1em;
+}
+
+#searchField {
+  border-radius: 20px;
+}
+
+.rhap_container {
+  background-color: #282828!important;
+  
+}
+
+.rhap_time {
+  color: #e1dbdb!important;
+}

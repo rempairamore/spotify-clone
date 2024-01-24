@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchTrackGenComp( {searchResult} ) {
@@ -19,7 +18,7 @@ export default function SearchTrackGenComp( {searchResult} ) {
       trackList.map((e, index) => 
         <div className="col-sm-auto col-md-auto text-center mb-5">
               <a href="#" onClick={() => navigate('/album_page/' + e.album.id)}>
-                <img className="img-fluid" src={e.album.cover_medium} alt="album image" />
+                <img className="img-fluid risultatiCopertine" src={e.album.cover_medium} alt="album image" />
               </a>
               <p>
                 <a href="#">
