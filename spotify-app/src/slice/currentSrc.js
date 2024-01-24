@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     currentSrc: '', 
-    listaBrani: [],
+    listaBrani: false,
     branoCorrente: 0
 }
 
@@ -23,12 +23,21 @@ const currentSrcSlice = createSlice({
             console.log(action.payload)
         },
         plusOneBrano(state, action) {
-            if(action.payload === 1) {
-                state.branoCorrente += 1
-            } else if(action.payload === 0) {
-                state.branoCorrente -= 1
-            }
-            console.log(state.branoCorrente)
+            if (action.payload === 1) {
+                if (state.listaBrani.length <= state.branoCorrente + 1) {
+                  state.branoCorrente = 0;
+                } else {
+                  state.branoCorrente += 1;
+                }
+              } else if (action.payload === 0) {
+                console.log(state.branoCorrente);
+                if(state.branoCorrente === 0){
+                    state.branoCorrente = state.listaBrani.length - 1
+                } else {
+                state.branoCorrente -= 1;
+                }
+                }
+            // console.log(state.branoCorrente)
         },
         prendiSrcDaBrano(state) {
             const { listaBrani, branoCorrente } = state;

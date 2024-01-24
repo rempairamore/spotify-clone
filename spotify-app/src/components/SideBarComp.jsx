@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export default function SideBarComp() {
   const navigate = useNavigate();
   const [query, setQuery] = useState();
+  const [forceRender, setForceRender] = useState(false);
 
   const searchHandler = (e) => {
     setQuery(e.target.value)
@@ -40,7 +41,7 @@ export default function SideBarComp() {
                 </a>
               </li>
               <li>
-                <a className="nav-item nav-link" href="#">
+                <a className="nav-item nav-link" href="#" onClick={() => navigate('/library_page')}>
                 <i className="bi bi-book-fill"></i>&nbsp; Your Library
                 </a>
               </li>
@@ -54,8 +55,8 @@ export default function SideBarComp() {
                     aria-label="Search"
                     aria-describedby="basic-addon2"
                     onChange={(e) => searchHandler(e)}
-                    onKeyDown={(e) => (e.key === 'Enter') && navigate('/search_result/'+ query)}
-                    on
+                    onKeyDown={(e) => (e.key === 'Enter') && (navigate('/search_result/'+ query), setQuery(''), setForceRender(prevState => !prevState))}
+                    key={forceRender}
                   />
                   </div>
                   </li>

@@ -43,7 +43,7 @@ export default function ResultSearchPage() {
             <div className="row mt-4">
                 <div className="col-10">
                     <div className='risultati'>
-                        <h2>Search Results: </h2>
+                        <h2>Search Results of <span className='nomeSearchQuery'>{query}</span>: </h2>
                         <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                             {risultato && <SearchTrackGenComp searchResult={risultato} /> }
                         </div>

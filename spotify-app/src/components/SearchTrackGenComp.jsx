@@ -21,8 +21,8 @@ export default function SearchTrackGenComp( {searchResult} ) {
                 <img className="img-fluid risultatiCopertine" src={e.album.cover_medium} alt="album image" />
               </a>
               <p>
-                <a href="#">
-                  {e.title_short.length > 15 ? `${e.title_short.substring(0, 15)}...` : e.title_short}
+                <a href="#" onClick={() => navigate('/artist_page/' + e.artist.id)}>
+                  {e.artist.name.length > 15 ? `${e.artist.name.substring(0, 15)}...` : e.artist.name}
                 </a>
                 <br />
                 <a href="#">

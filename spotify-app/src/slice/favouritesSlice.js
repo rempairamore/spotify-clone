@@ -10,12 +10,17 @@ const favourites_slice = createSlice(
         initialState : initialState,
         reducers: {
             addFavourite(state, action) {
+
+                if (state.favourites.includes(action.payload)) {
+                console.log("valore già presente");
+                } else {
                 state.favourites.push(action.payload)
-            },
+                }
+                },
             removeFavourite(state, action) {
                 return {
                     ...state,
-                    favourites: state.favourites.filter(u => u.title !== action.payload)
+                    favourites: state.favourites.filter(numero => numero !== action.payload)
                 }
 
             }

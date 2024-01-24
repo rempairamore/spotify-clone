@@ -180,6 +180,10 @@ body {
   .trackHover a {
     text-decoration: none;
   }
+
+  .trackHover a {
+    color: #dfd9d9;
+  }
   
   #btnPlay {
     font-weight: 700;
@@ -244,9 +248,13 @@ body {
     align-items: center;
   }
 
-  .artist-name {
+  .artist-name, .artist {
     cursor: pointer;
     text-decoration: underline;
+  }
+
+  .artist {
+    color: #a2a0a0;
   }
 
 .logograndespotify {
@@ -268,9 +276,24 @@ body {
 
 .rhap_container {
   background-color: #282828!important;
-  
+  padding: 0!important;
 }
 
 .rhap_time {
   color: #e1dbdb!important;
+}
+
+.col-md-2.offset-md-2.text-white.text-center, .col-md-2.offset-md-2.text-white.text-center.artist, .col-md-2.offset-md-1.text-white.d-none.d-lg-block {
+  align-self: center;
+  display: flow-root;
+}
+
+.nomeSearchQuery {
+  font-size: 2em;
+  color: rgb(47,213,102);
+  padding-left: 0.5em;
+}
+
+.risultati h2 {
+  margin-bottom: 1.3em;
 }

@@ -20,7 +20,7 @@ export default function AlbumPage() {
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
         'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
         'Content-Type': 'application/json',
-        'User-Agent': 'PostmanRuntime/7.35.0'
+        /* 'User-Agent': 'PostmanRuntime/7.35.0' */
       }
     })
     .then(function (response) {
@@ -46,13 +46,11 @@ export default function AlbumPage() {
     
   }
 
-  useEffect(()  => {
-    singleAlbum && dispatch(setListaBrani(singleAlbum.tracks.data)) 
+  // useEffect(()  => {
+  //   singleAlbum && dispatch(setListaBrani(singleAlbum.tracks.data)) 
 
-  },[singleAlbum])
+  // },[singleAlbum])
 
-
-  console.log(singleAlbum)
   return (
     <div className="col-12 col-md-9 offset-md-3 mainPage">
       {singleAlbum &&
