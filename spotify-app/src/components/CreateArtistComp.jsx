@@ -5,7 +5,7 @@ import SingoloArtistaPreferito from './SingoloArtistaPreferito'
 export default function CreateArtistComp() {
     
   const preferiti = useSelector(state => state.favourites.favourites)
-  console.log(preferiti)
+  // console.log(preferiti)
 
   return (
     <>

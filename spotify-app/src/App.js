@@ -9,14 +9,12 @@ import LibraryPage from './pages/LibraryPage'
 import NotFoundPage from './pages/NotFoundPage'
 import SideBar from './components/SideBarComp'
 import PlayerComp from './components/PlayerComp';
-import HeaderComp from './components/HeaderComp';
 import ResultSearchPage from './pages/ResultSearchPage';
 
 function App() {
   return (
     <BrowserRouter>
         <SideBar />
-        <HeaderComp />
         <Routes>
           <Route path="/" element={<HomePage />} /> 
           <Route path="/album_page/:albumID" element={<AlbumPage />} />

@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import TracksCreatorComp from '../components/TracksCreatorComp';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentSrc, setBranoCorrente, setListaBrani } from '../slice/currentSrc';
+import { addAlbumFavourite, removeAlbumFavourite } from '../slice/favouritesSlice';
 
 export default function AlbumPage() {
 
@@ -33,7 +34,7 @@ export default function AlbumPage() {
         console.log(error);
     })
 
-  },[])
+  },[albumID])
 
 
   const handlerClickPlay = (singleAlbum) =>  {
@@ -50,6 +51,15 @@ export default function AlbumPage() {
   //   singleAlbum && dispatch(setListaBrani(singleAlbum.tracks.data)) 
 
   // },[singleAlbum])
+  const albumFavoriti = useSelector((state) => state.favourites.albumFavoriti);
+  
+  const handlerAlbumLike = () => {
+    if (albumFavoriti.includes(singleAlbum.id)) {
+      dispatch(removeAlbumFavourite(singleAlbum.id));
+    } else {
+      dispatch(addAlbumFavourite(singleAlbum.id));
+    }
+  };
 
   return (
     <div className="col-12 col-md-9 offset-md-3 mainPage">
@@ -59,6 +69,7 @@ export default function AlbumPage() {
               <Col md={3} className="pt-5 text-center" id="img-container">
                 <Card className="img-fluid">
                   <Card.Img src={singleAlbum.cover_medium} alt="Album" />
+                  
                   <div className="mt-4 text-center">
                     <p className="album-title">{singleAlbum.title}</p>
                   </div>
@@ -69,6 +80,12 @@ export default function AlbumPage() {
                     <Button id="btnPlay" variant="success" type="button" onClick={() => handlerClickPlay(singleAlbum)}>
                       Play
                     </Button>
+                    {
+                      albumFavoriti.includes(singleAlbum.id) ?  
+                      <i className="bi bi-heart-fill cuore mx-3" onClick={() => handlerAlbumLike()}></i> 
+                      :  
+                      <i className="bi bi-heart cuore mx-3" onClick={() => handlerAlbumLike()}></i>
+                    }
                   </div>
                 </Card>
               </Col>

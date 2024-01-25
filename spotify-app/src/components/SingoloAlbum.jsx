@@ -37,9 +37,9 @@ export default function SingoloAlbum({nomeArtista}) {
   return (
     <>
     {
-            album &&  <div class="col text-center" id={album[0].id}>
+            album &&  <div className="col text-center" id={album[0].id}>
             <a href="#">
-            <img class="img-fluid" src={album[0].album.cover_medium
+            <img className="img-fluid" src={album[0].album.cover_medium
             } alt="1"  onClick={() => navigate('/album_page/' + album[0].album.id)}/>
             </a>
             <p>

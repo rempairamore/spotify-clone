@@ -5,6 +5,7 @@ import "react-h5-audio-player/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { plusOneBrano, prendiSrcDaBrano } from "../slice/currentSrc";
 import { useNavigate } from "react-router-dom";
+import { addAlbumFavourite, removeAlbumFavourite } from "../slice/favouritesSlice";
 
 export default function PlayerComp() {
   const canzoneAttuale = useSelector((state) => state.currentSrc.currentSrc);
@@ -31,6 +32,17 @@ export default function PlayerComp() {
 
   const handleChangeTitle = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % numeroBranoAttuale.length);
+  };
+
+
+  const albumFavoriti = useSelector((state) => state.favourites.albumFavoriti);
+
+  const handlerAlbumLike = () => {
+    if (albumFavoriti.includes(numeroBranoAttuale[branoCorrente].album.id)) {
+      dispatch(removeAlbumFavourite(numeroBranoAttuale[branoCorrente].album.id));
+    } else {
+      dispatch(addAlbumFavourite(numeroBranoAttuale[branoCorrente].album.id));
+    }
   };
 
   return (
@@ -72,12 +84,20 @@ export default function PlayerComp() {
       </div>
       { canzoneAttuale && <div className="col-md-2 offset-md-1 text-white d-none d-lg-block ">
         <img
+          className="imgPiccolaPlayer"
           src={
             canzoneAttuale &&
-            numeroBranoAttuale[branoCorrente].album.cover_small
+            numeroBranoAttuale[branoCorrente].album.cover_medium
           }
           alt="cover"
         />
+        {
+          albumFavoriti.includes(numeroBranoAttuale[branoCorrente].album.id) ?  
+            <i className="bi bi-heart-fill cuore mx-3" onClick={() => handlerAlbumLike()}></i> 
+          :  
+            <i className="bi bi-heart cuore mx-3" onClick={() => handlerAlbumLike()}></i>
+        }
+        
       </div> }
     </Container>
   );

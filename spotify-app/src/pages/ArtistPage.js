@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Row, Col, Button, Image } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import ArtistTrackGenComp from "../components/ArtistTrackGenComp";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavourite, removeFavourite } from "../slice/favouritesSlice";
+import { setBranoCorrente, setCurrentSrc, setListaBrani } from "../slice/currentSrc";
 
 export default function ArtistPage() {
   const { artistID } = useParams();
   const [singleArtist, setSingleArtist] = useState();
+
+  // const [localSrc, setLocalSrc] = useState();
+  const [localBrani, setLocalBrani] = useState(); 
 
   useEffect(() => {
     axios
@@ -32,11 +36,36 @@ export default function ArtistPage() {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [artistID]);
+
+  // nuovo 
+  useEffect(() => {
+    axios
+      .get(
+        'https://striveschool-api.herokuapp.com/api/deezer/artist/' + artistID + '/top?limit=20',
+        {
+          headers: {
+            "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+            "X-RapidAPI-Key":
+              "9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0",
+            "Content-Type": "application/json",
+            "User-Agent": "PostmanRuntime/7.35.0",
+          },
+        }
+      )
+      .then(function (response) {
+        // handle success
+        setLocalBrani(response.data.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  }, [artistID]);
 
   const dispatch = useDispatch();
   const favoriti = useSelector((state) => state.favourites.favourites);
-  const [presenza, setPresenza] = useState(true);
+  // const [presenza, setPresenza] = useState(true);
   console.log(favoriti);
 
   // useEffect(()  => {
@@ -49,6 +78,15 @@ export default function ArtistPage() {
   //   }
 
   // },[artistID])
+
+  const handlerClickPlay = () =>  {
+    console.log("cliccato   ", localBrani )
+    dispatch(setCurrentSrc(localBrani[0].preview))
+    dispatch(setBranoCorrente(0))
+    dispatch(setListaBrani(localBrani))
+    
+    
+  }
 
   return (
     <>
@@ -66,6 +104,7 @@ export default function ArtistPage() {
                   variant="success"
                   className="mr-2 mainButton d-inline"
                   id="playButton"
+                  onClick={handlerClickPlay}
                 >
                   PLAY
                 </Button>

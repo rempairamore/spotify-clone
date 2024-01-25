@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-export default function SingoloArtistaPreferito({idArtista}) {
+export default function SingoloAlbumPreferito({idAlbum}) {
 
-    const [artista, setArtista] = useState();
+    const [album, setAlbum] = useState();
     const navigate = useNavigate();
 
     useEffect(()  => {
-        axios.get('https://striveschool-api.herokuapp.com/api/deezer/artist/' + idArtista,
+        axios.get('https://striveschool-api.herokuapp.com/api/deezer/album/' + idAlbum,
         {
             headers: {
                 'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
@@ -19,7 +19,7 @@ export default function SingoloArtistaPreferito({idArtista}) {
         })
         .then(function (response) {
             // handle success
-            setArtista(response.data);
+            setAlbum(response.data);
         })
         .catch(function (error) {
             // handle error
@@ -32,14 +32,14 @@ export default function SingoloArtistaPreferito({idArtista}) {
   return (
     <>
     {
-            artista &&  <div className="col text-center" id={artista.id}>
+            album &&  <div className="col text-center" id={album.id}>
             <a href="#">
-            <img className="img-fluid" src={artista.picture_medium
-            } alt="1"  onClick={() => navigate('/artist_page/' + artista.id)}/>
+            <img className="img-fluid" src={album.cover_medium
+            } alt="1"  onClick={() => navigate('/album_page/' + album.id)}/>
             </a>
             <p>
-            <a href="#" onClick={() => navigate('/artist_page/' + artista.id)}>
-                {artista.name}
+            <a href="#" onClick={() => navigate('/album_page/' + album.id)}>
+                {album.title}
             </a>
             </p>
         </div> 
