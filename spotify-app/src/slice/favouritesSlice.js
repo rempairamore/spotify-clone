@@ -18,7 +18,7 @@ const getInitialFavourites = () => {
   
   const initialState = {
     favourites: getInitialFavourites(),
-    albumFavoriti: [],
+    albumFavoriti: getInitialAlbumFavourites(),
     email: "joe@example.com",
     pwd: "prova123",
     fantoccio: false,
@@ -37,8 +37,12 @@ const favourites_slice = createSlice({
       }
     },
     addAlbumFavourite(state, action) {
+      if(state.albumFavoriti.includes(action.payload)) {
+        console.log("valore album già presente");
+      } else {
         state.albumFavoriti.push(action.payload);
         localStorage.setItem('myAlbumFav', JSON.stringify(state.favourites));
+      }
     },
     removeFavourite(state, action) {
         const updatedFavourites = state.favourites.filter(
