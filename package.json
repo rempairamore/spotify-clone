@@ -1,6 +1,6 @@
 {
-  "name": "spotify-app",
-  "version": "0.1.0",
+  "name": "spotify-app-mockup",
+  "version": "1.2.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
